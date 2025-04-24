@@ -1,7 +1,8 @@
+from app.car import Car
 import math
 
 
-def distance(a_coord: int, b_coord: int) -> int | float:
+def distance(a_coord: list[float], b_coord: list[float]) -> float:
     return math.sqrt((a_coord[0] - b_coord[0])
                      ** 2 + (a_coord[1] - b_coord[1]) ** 2)
 
@@ -10,9 +11,9 @@ class Customer:
     def __init__(self,
                  name: str,
                  cart: dict,
-                 location: int,
+                 location: list,
                  money: int | float,
-                 car: str) -> None:
+                 car: Car) -> None:
         self.name = name
         self.cart = cart
         self.location = location
@@ -20,7 +21,7 @@ class Customer:
         self.car = car
         self.home = location[:]
 
-    def can_afford(self, shop: str, fuel_price: float) -> bool:
+    def can_afford(self, shop: str, fuel_price: float) -> tuple[bool, float]:
         dist = distance(self.location, shop.location)
         fuel_needed = (dist * 2) * self.car.fuel_consumption / 100
         fuel_cost = fuel_needed * fuel_price
