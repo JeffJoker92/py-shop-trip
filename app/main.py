@@ -31,8 +31,8 @@ def shop_trip() -> None :
         possible = []
         for shop in shops:
             can_buy, total_cost = customer.can_afford(shop, fuel_price)
-            print(f"{customer.name}'s trip to the "
-                  f"{shop.name} costs {round(total_cost, 2):.2f}")
+            print("{}'s trip to the {} costs {:.2f}".format(
+                customer.name, shop.name, round(total_cost, 2)))
             if can_buy:
                 possible.append((total_cost, shop))
 
@@ -50,5 +50,5 @@ def shop_trip() -> None :
         customer.go_home()
         print(f"{customer.name} rides home")
         customer.money -= round(best_cost, 2)
-        print(f"{customer.name} now has "
-              f"{round(customer.money, 2):.2f} dollars\n")
+        print("{} now has {:.2f} dollars\n".format(
+            customer.name, round(customer.money, 2)))
