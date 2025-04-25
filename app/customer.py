@@ -1,4 +1,5 @@
 from app.car import Car
+from app.shop import Shop
 import math
 
 
@@ -21,7 +22,7 @@ class Customer:
         self.car = car
         self.home = location[:]
 
-    def can_afford(self, shop: str, fuel_price: float) -> tuple[bool, float]:
+    def can_afford(self, shop: Shop, fuel_price: float) -> tuple[bool, float]:
         dist = distance(self.location, shop.location)
         fuel_needed = (dist * 2) * self.car.fuel_consumption / 100
         fuel_cost = fuel_needed * fuel_price
